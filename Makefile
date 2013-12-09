@@ -7,7 +7,7 @@ sandbox-install:
 	cabal install -j$(CORES) --bin=bin
 
 install:
-	
+	cabal sandbox init
 	cabal install -j$(CORES) --bin=$(HOME)/.cabal/bin
 
 clean:
