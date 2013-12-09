@@ -1,14 +1,11 @@
 name: bibtex-clean
 version: 0.1.0.0
--- synopsis:
--- description:
-license: AllRightsReserved
+synopsis: Reads bibtex entries from stdin, and writes a "clean" version of all entries to stdout.
+license: PublicDomain
 author: Ozgur Akgun
 maintainer: ozgurakgun@gmail.com
--- copyright:
--- category:
+copyright: 2013 Ozgur Akgun
 build-type: Simple
--- extra-source-files:
 cabal-version: >=1.10
 
 executable bibtex-clean
