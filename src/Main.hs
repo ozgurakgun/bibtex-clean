@@ -19,12 +19,9 @@ main = interact $ \ stdin ->
             $ sortBy (comparing comp)
             $ map lowerCaseFieldNames xs
 
-comp :: T -> (Maybe String, String, String, Maybe String)
-comp x = (yearOf x, entryType x, identifier x, authorOf x)
+comp :: T -> (Maybe String, String, Maybe String, String)
+comp x = (fieldOf "year" x, entryType x, fieldOf "title" x, identifier x)
 
-yearOf :: T -> Maybe String
-yearOf = lookup "year" . fields
-
-authorOf :: T -> Maybe String
-authorOf = lookup "author" . fields
+fieldOf :: String -> T -> Maybe String
+fieldOf f = lookup f . fields
 
