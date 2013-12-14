@@ -16,11 +16,17 @@ main :: IO ()
 main = interact $ \ stdin ->
     case parse file "<stdin>" (fixStdin stdin) of
         Left err -> error (show err)
-        Right xs -> unlines
-            $ nub
-            $ map entry
-            $ sortBy (comparing comp)
-            $ map lowerCaseFieldNames xs
+        Right xs -> xs
+            |> map lowerCaseFieldNames
+            |> sortBy (comparing comp)
+            |> map entry
+            |> nub
+            |> unlines
+
+
+(|>) :: a -> (a -> b) -> b
+(|>) = flip ($)
+
 
 comp :: T -> (Maybe String, String, Maybe String, String)
 comp x = (fieldOf "year" x, entryType x, fieldOf "title" x, identifier x)
