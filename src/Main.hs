@@ -1,7 +1,7 @@
 module Main where
 
 import Data.Ord ( comparing )
-import Data.List ( sortBy )
+import Data.List ( nub, sortBy )
 
 import Text.BibTeX.Entry
 import Text.BibTeX.Parse ( file )
@@ -17,6 +17,7 @@ main = interact $ \ stdin ->
     case parse file "<stdin>" (fixStdin stdin) of
         Left err -> error (show err)
         Right xs -> unlines
+            $ nub
             $ map entry
             $ sortBy (comparing comp)
             $ map lowerCaseFieldNames xs
