@@ -1,5 +1,6 @@
 module Main where
 
+import Data.Char ( toLower )
 import Data.Ord ( comparing )
 import Data.List ( nub, sortBy )
 
@@ -18,6 +19,7 @@ main = interact $ \ stdin ->
         Left err -> error (show err)
         Right xs -> xs
             |> map lowerCaseFieldNames
+            |> map lowerCaseEntryType
             |> sortBy (comparing comp)
             |> map entry
             |> nub
@@ -33,6 +35,9 @@ comp x = (fieldOf "year" x, entryType x, fieldOf "title" x, identifier x)
 
 fieldOf :: String -> T -> Maybe String
 fieldOf f = lookup f . fields
+
+lowerCaseEntryType :: T -> T
+lowerCaseEntryType t = t { entryType = map toLower (entryType t) }
 
 
 fixStdin :: String -> String
