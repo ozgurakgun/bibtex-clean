@@ -31,3 +31,4 @@ fieldOf f = lookup f . fields
 
 fixStdin :: String -> String
 fixStdin = replace "@inproc.{" "@inproceedings{"
+         . replace "@InProc.{" "@inproceedings{"
