@@ -4,7 +4,7 @@ CORES = 1
 
 sandbox-install:
 	cabal sandbox init
-	cabal install -j$(CORES) --bin=bin
+	cabal install -j$(CORES) --bin=dist/bin
 
 install:
 	cabal sandbox init
