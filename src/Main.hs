@@ -28,6 +28,7 @@ main = do
                     |> map lowerCaseFieldNames
                     |> map lowerCaseEntryType
                     |> sortBy (comparing comp)
+                    |> reverse
                     |> map entry
                     |> nub
                     |> unlines
